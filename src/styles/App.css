@@ -33,7 +33,7 @@
 
 .main-container {
     background-color: rgba(250, 235, 215, 0.3);
-    border: 1px solid #eaffd3cc;
+    border: 2px groove #383b34c9;
     border-radius: 50%;
     width: 100%;
     max-width: 1080px;
