@@ -2,23 +2,35 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 1rem;
+    padding: 1.5rem 1rem 1rem;
 }
 .head-container :nth-child(2) {
     flex-basis: 60%;
+}
+
+.head-h1 {
+    color: #eaffd3cc;
+    background-color: rgba(250, 235, 215, 0.13);
+    text-align: center;
+    width: 45%;
+    border: 1px solid #eaffd3cc;
+    border-radius: .5rem;
 }
 
 .ant-btn:disabled {
     cursor: default;
 }
 
+.hov-point {
+    text-transform: capitalize;
+}
 .hov-point:hover {
-    animation: hov-change 1s;
+    animation: hov-change 3s;
     animation-fill-mode: forwards;
     cursor: pointer;
 }
 
 @keyframes hov-change {
     0%{}
-    100%{color: rgb(247, 251, 8);}
+    100%{color: rgba(224, 226, 126, 0.616);}
 }

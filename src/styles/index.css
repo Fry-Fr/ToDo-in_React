@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
 body ::selection {
     background-color: rgb(126, 40, 0);
 }
@@ -9,4 +11,5 @@ body ::selection {
     align-items: center;
     width: 100%;
     min-height: 100vh;
+    font-family: 'Merriweather', serif;
 }

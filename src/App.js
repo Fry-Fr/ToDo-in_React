@@ -43,7 +43,9 @@ function App() {
                 <Button type="primary" onClick={showModal} disabled={!isButtonVisible?true:false}>
                     User: {!username ? "Anonomous" : username}
                 </Button>
-                <h1 onClick={handleIsBtnVis}><span className='hov-point'>{!username ? '' : username+"'s"}</span> To-Do List!</h1>
+                <div>
+                    <h1 onClick={handleIsBtnVis} className='head-h1'><span className='hov-point'>{!username ? '' : username+"'s"}</span> To-Do List!</h1>
+                </div>
             </div>
         <Modal title="Enter your name..." visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
             <Input placeholder="User?" onChange={handleOnChange} onPressEnter={handleOk} value={changeUsername} />
