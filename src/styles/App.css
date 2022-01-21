@@ -44,19 +44,24 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 
 .task-list-container {
-    border-right: 1px solid white;
-    border-left: 1px solid white;
-    margin-top: 3.5rem;
-    padding-left: 6rem;
+    text-align: center;
+    margin-top: 2.5rem;
     width: 55%;
     min-height: 75%;
 }
 
 .task-list {
     list-style-type: none;
+    padding-left: 0;
+    padding-bottom: 2.5rem;
+}
+.task-list li {
+    font-size: 1.5rem;
 }
 
 .ant-input-add-todo {
