@@ -1,10 +1,16 @@
-function Main({ todoList }) {
+function Main({ todoList, setTDL }) {
+    const complete = (index) => {
+        todoList[index].completed = !todoList[index].completed
+        
+    }
     const toggleChecked = (e) => {
         const task = e.target;
+        complete(task.id)
         if (task.className === "task-complete") {
-            return task.className = ''
+            return task.className = '';
         }
         task.className = 'task-complete';
+
     }
 
     return (
@@ -13,7 +19,7 @@ function Main({ todoList }) {
                 <ul className="task-list">
                     {todoList.map( (task, i) => {
                         return (
-                            <li onClick={toggleChecked} key={i}>{task}</li>
+                            <li id={i} onClick={toggleChecked} key={i}>{task.toDo}</li>
                         )
                     })}
                 </ul>

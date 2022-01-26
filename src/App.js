@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Modal, Button, Input } from 'antd';
 
 import Main from './components/Main';
+import Item from 'antd/lib/list/Item';
 
 function App() {
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -11,8 +12,14 @@ function App() {
     const [todoList, setToDoList] = useState([]);
     const [newToDo, setNewToDo] = useState('');
 
+    const handleClear = (e) => {
+        const nodeList = document.querySelectorAll('.task-complete');
+        nodeList.forEach(elem => elem.className = '')
+        setToDoList(todoList.filter( item => !item.completed))
+    }
+
     const handleAddToDo = (e) => {
-        setToDoList([...todoList, newToDo]);
+        setToDoList([...todoList, {'toDo': newToDo, 'completed': false}]);
         setNewToDo('');
     }
 
@@ -45,12 +52,6 @@ function App() {
         setIsModalVisible(false);
     };
 
-    useEffect(() => {
-        window.addEventListener("load", (e) => {
-            showModal();
-        })
-    },[])
-
     return (
         <div className='App'>
             <div className='head-container'>
@@ -65,7 +66,8 @@ function App() {
                 <Input placeholder="  ○ ... task" className='ant-input-add-todo' onPressEnter={handleAddToDo} onChange={handleNewToDo} value={newToDo} />
                 <Button type='primary' className='add-todo-btn' onClick={handleAddToDo}>add</Button>
             </div>
-            <Main todoList={todoList} />
+            <Button style={{"margin":".5rem 0 0"}} onClick={handleClear}>clear</Button>
+            <Main todoList={todoList} setTDL={setToDoList} />
         <Modal title="Enter your name..." visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
             <Input placeholder="User?" onChange={handleOnChange} onPressEnter={handleOk} value={changeUsername} />
         </Modal>
