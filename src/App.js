@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Modal, Button, Input } from 'antd';
 
 import Main from './components/Main';
-import Item from 'antd/lib/list/Item';
 
 function App() {
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -11,6 +10,12 @@ function App() {
     const [changeUsername, setChangeUsername] = useState('');
     const [todoList, setToDoList] = useState([]);
     const [newToDo, setNewToDo] = useState('');
+
+    const complete = (index) => {
+        const newList = [...todoList]
+        newList[index].completed = !newList[index].completed
+        setToDoList(newList)
+    }
 
     const handleClear = (e) => {
         const nodeList = document.querySelectorAll('.task-complete');
@@ -52,6 +57,31 @@ function App() {
         setIsModalVisible(false);
     };
 
+    useEffect(() => {
+        if (localStorage.length > 0 && todoList.length === 0) {
+            const memList = []
+            for (const key in localStorage) {
+                if (key === 'key' || key === 'clear' || key === 'length' || key === 'getItem' || key === 'setItem' || key === 'removeItem') {
+                    continue
+                }else {
+                    const value = localStorage.getItem(key)
+                    memList.push({'toDo': key, 'completed': value === 'false' ? false : true})
+                }
+            }
+            setToDoList(memList.slice(0).reverse())
+        }
+        if (todoList.length > 0) {
+            todoList.forEach( item => {
+                if (item.completed === true) {
+                    localStorage.removeItem(`${item.toDo}`)
+                }else {
+                    localStorage.setItem(`${item.toDo}`, `${item.completed}`)
+                }
+            })
+        }
+        
+    },[todoList])
+
     return (
         <div className='App'>
             <div className='head-container'>
@@ -67,7 +97,7 @@ function App() {
                 <Button type='primary' className='add-todo-btn' onClick={handleAddToDo}>add</Button>
             </div>
             <Button style={{"margin":".5rem 0 0"}} onClick={handleClear}>clear</Button>
-            <Main todoList={todoList} setTDL={setToDoList} />
+            <Main todoList={todoList} complete={complete} />
         <Modal title="Enter your name..." visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
             <Input placeholder="User?" onChange={handleOnChange} onPressEnter={handleOk} value={changeUsername} />
         </Modal>

@@ -1,8 +1,4 @@
-function Main({ todoList, setTDL }) {
-    const complete = (index) => {
-        todoList[index].completed = !todoList[index].completed
-        
-    }
+function Main({ todoList, complete }) {
     const toggleChecked = (e) => {
         const task = e.target;
         complete(task.id)
