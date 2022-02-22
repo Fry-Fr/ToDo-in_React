@@ -92,11 +92,11 @@ function App() {
                     <h1 onClick={handleIsBtnVis} className='head-h1'><span className='hov-point'>{!username ? '' : username+"'s"}</span> To-Do List!</h1>
                 </div>
             </div>
-            <div style={{"width":"50%", "maxWidth":"600px", "textAlign":"center"}}>
+            <div className='ui-container'>
                 <Input placeholder="  ○ ... task" className='ant-input-add-todo' onPressEnter={handleAddToDo} onChange={handleNewToDo} value={newToDo} />
                 <Button type='primary' className='add-todo-btn' onClick={handleAddToDo}>add</Button>
             </div>
-            <Button style={{"margin":".5rem 0 0"}} onClick={handleClear}>clear</Button>
+            <Button className='ant-clear-btn' onClick={handleClear}>clear</Button>
             <Main todoList={todoList} complete={complete} />
         <Modal title="Enter your name..." visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
             <Input placeholder="User?" onChange={handleOnChange} onPressEnter={handleOk} value={changeUsername} />

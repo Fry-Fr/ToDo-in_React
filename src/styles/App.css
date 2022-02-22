@@ -10,6 +10,7 @@
 }
 
 .head-h1 {
+    cursor: default;
     color: #eaffd3cc;
     background-color: rgba(250, 235, 215, 0.13);
     text-align: center;
@@ -26,9 +27,15 @@
     text-transform: capitalize;
 }
 .hov-point:hover {
-    animation: hov-change 3s;
-    animation-fill-mode: forwards;
     cursor: pointer;
+    color: rgba(224, 226, 126, 0.616);
+    transition: 3s;
+}
+
+.ui-container {
+    width: 50%;
+    max-width: 600px;
+    text-align: center;
 }
 
 .main-container {
@@ -61,10 +68,14 @@
     padding-bottom: 2.5rem;
 }
 .task-list li {
-    cursor: default;
+    cursor: pointer;
     color: #ebffd5cc;
     font-size: 1.5rem;
-    animation: spinIn 1s;
+    animation: addToDo 1.5s;
+}
+.task-list li:hover {
+    color: aquamarine;
+    transition: 1s;
 }
 .task-complete {
     color: rgba(179, 106, 58, 0.589) !important;
@@ -75,7 +86,7 @@
     color: #eaffd3cc;
     background-color: rgba(250, 235, 215, 0.3);
     width: 40%;
-    min-width: 100px;
+    min-width: 200px;
 }
 .ant-input-add-todo:focus,
 .ant-input-add-todo:hover {
@@ -91,14 +102,36 @@
     border-color: rgba(90, 149, 62, 0.7);
 }
 
-@keyframes hov-change {
-    0%{}
-    100%{color: rgba(224, 226, 126, 0.616);}
+.ant-clear-btn {
+    margin:.5rem 0 0;
 }
-@keyframes spinIn {
-    0%{transform: translateX(0%) rotate(0deg);}
-    25%{transform: translateX(-20%) rotate(360deg);}
-    50%{transform: translateX(20%) rotate(-360deg);}
-    75%{transform: translateX(25%) rotate(360);}
-    1000%{transform: translateX(-15%) rotate(-360deg);}
+
+@media (max-width: 700px) {
+    .head-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .head-container h1 {
+        width: 100%;
+        margin: .3em 0 0;
+    }
+    .ui-container {
+        width: 100%;
+        max-width: 200px;
+    }
+    .main-container {
+        margin: .5rem 0 0;
+        border-radius: 5%;
+    }
+    .ant-input-add-todo {
+        width: 100%;
+    }
+    .add-todo-btn {
+        margin: .3rem 0 0;
+    }
+}
+@keyframes addToDo {
+    0%{transform: translateX(-10em);color: #afafaf;}
+    50%{transform: translateX(5em);color: #858585;}
+    100%{transform: translateX(0em); color: #ebffd5cc;}
 }
