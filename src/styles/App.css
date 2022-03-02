@@ -41,7 +41,7 @@
 .main-container {
     background-color: rgba(250, 235, 215, 0.3);
     border: 2px groove #383b34c9;
-    border-radius: 50%;
+    border-radius: 2rem;
     width: 100%;
     max-width: 1080px;
     height: 60vh;
@@ -121,7 +121,6 @@
     }
     .main-container {
         margin: .5rem 0 0;
-        border-radius: 5%;
     }
     .ant-input-add-todo {
         width: 100%;
