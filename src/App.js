@@ -61,17 +61,23 @@ function App() {
         if (localStorage.length > 0 && todoList.length === 0) {
             const memList = []
             for (const key in localStorage) {
-                if (key === 'key' || key === 'clear' || key === 'length' || key === 'getItem' || key === 'setItem' || key === 'removeItem') {
+                if (key === 'key' || key === 'clear' || key === 'length' || key === 'getItem' || key === 'setItem' || key === 'removeItem' || key === '[user:name]') {
                     continue
                 }else {
                     const value = localStorage.getItem(key)
                     memList.push({'toDo': key, 'completed': value === 'false' ? false : true})
                 }
             }
-            setToDoList(memList.slice(0).reverse())
+            if (memList.length > 0) {
+                setToDoList(memList.slice(0).reverse())
+            }
         }
         if (todoList.length > 0) {
             todoList.forEach( item => {
+                if (item.toDo === '[user:name]') {
+                    item.toDo = item.toDo.replace(/\[|\]/g, '')
+                    setToDoList([...todoList])
+                }
                 if (item.completed === true) {
                     localStorage.removeItem(`${item.toDo}`)
                 }else {
@@ -81,6 +87,15 @@ function App() {
         }
         
     },[todoList])
+
+    useEffect(() => {
+        if (!username && localStorage.getItem('[user:name]')) {
+            setUsername(localStorage.getItem('[user:name]'));
+        }
+        if (username) {
+            localStorage.setItem('[user:name]', username);
+        }
+    }, [username])
 
     return (
         <div className='App'>
