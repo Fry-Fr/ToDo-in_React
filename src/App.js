@@ -113,7 +113,7 @@ function App() {
             </div>
             <Button className='ant-clear-btn' onClick={handleClear}>clear</Button>
             <Main todoList={todoList} complete={complete} />
-        <Modal title="Enter your name..." visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <Modal title="Enter your name..." open={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
             <Input placeholder="User?" onChange={handleOnChange} onPressEnter={handleOk} value={changeUsername} />
         </Modal>
         </div>
